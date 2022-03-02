@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controller/popular_product_controller.dart';
+import 'package:food_delivery/models/products_model.dart';
+import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/route/route_helper.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/expandable_text.dart';
+import 'package:get/get.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/app_icon.dart';
@@ -10,10 +16,13 @@ import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>()
+        .popularProductList[pageId] as ProductModel;
     print('current size is ' + MediaQuery.of(context).size.toString());
     return Scaffold(
       backgroundColor: Colors.white,
@@ -29,7 +38,8 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('assets/image/food2.jpeg'))),
+                        image: NetworkImage(
+                            AppConstants.UPLOAD_URL + product.img!))),
               )),
           // icon widgets
           Positioned(
@@ -39,7 +49,12 @@ class PopularFoodDetail extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.arrow_back),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.initial);
+                    },
+                    child: AppIcon(icon: Icons.arrow_back),
+                  ),
                   AppIcon(icon: Icons.shopping_cart_outlined),
                 ],
               )),
@@ -62,7 +77,7 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppColumn(text: 'Chinese side'),
+                    AppColumn(text: product.name!),
                     SizedBox(height: Dimensions.height20),
                     BigText(text: 'Introduce'),
                     SizedBox(height: Dimensions.height20),
@@ -70,9 +85,7 @@ class PopularFoodDetail extends StatelessWidget {
                     // ExpandableTextWidget(text: 'Lorem ipsum nisi. '),
                     Expanded(
                       child: SingleChildScrollView(
-                        child: ExpandableTextWidget(
-                            text:
-                                'Lorem ipsum nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc'),
+                        child: ExpandableTextWidget(text: product.description!),
                       ),
                     ),
                   ],
@@ -124,7 +137,7 @@ class PopularFoodDetail extends StatelessWidget {
                   left: Dimensions.width20,
                   right: Dimensions.width20),
               child: BigText(
-                text: '\$10 | Add to cart',
+                text: '\$${product.price!} | Add to cart',
                 color: Colors.white,
               ),
               decoration: BoxDecoration(
