@@ -40,6 +40,7 @@ class CartModel {
     data['quantity'] = this.quantity;
     data['isExist'] = this.isExist;
     data['time'] = this.time;
+    data['product'] = this.product!.toJson();
     return data;
   }
 }

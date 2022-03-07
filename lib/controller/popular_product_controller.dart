@@ -83,7 +83,6 @@ class PopularProductController extends GetxController {
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }
-    print("id: ${product.id} _inCartItems:" + _inCartItems.toString());
   }
 
   void addItem(ProductModel product) {

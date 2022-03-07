@@ -45,4 +45,7 @@ class Dimensions {
 
   // bottom nav bar
   static double bottomNavBarHeight = screenHeight / 6.5;
+
+  // spalsh screen
+  static double splashImg = screenHeight / 3.38;
 }
