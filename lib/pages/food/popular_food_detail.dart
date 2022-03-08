@@ -26,8 +26,6 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('current size is ' + MediaQuery.of(context).size.toString());
-
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
     Get.find<PopularProductController>()
@@ -70,8 +68,8 @@ class PopularFoodDetail extends StatelessWidget {
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return GestureDetector(
                       onTap: () {
-                        if (controller.totalItems >= 1)
-                          Get.toNamed(RouteHelper.getCartPage("popular"));
+                        // if (controller.totalItems >= 1)
+                        Get.toNamed(RouteHelper.getCartPage("popular"));
                       },
                       child: Stack(
                         children: [
