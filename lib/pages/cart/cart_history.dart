@@ -44,6 +44,18 @@ class CartHistory extends StatelessWidget {
     var saveCounter = 0;
     var listCounter = 0;
 
+    Widget timeWidget(int index) {
+      var outputDate = DateTime.now().toString();
+      if (index < getCartHistoryList.length) {
+        DateTime parseDate = DateFormat("yyyy-MM-dd hh:mm:ss")
+            .parse(getCartHistoryList[listCounter].time!);
+        var inputDate = DateTime.parse(parseDate.toString());
+        var outputFormat = DateFormat("MM/dd/yyyy hh:mm a");
+        outputDate = outputFormat.format(inputDate);
+      }
+      return BigText(text: outputDate);
+    }
+
     return Scaffold(
       body: Column(
         children: [
@@ -89,23 +101,7 @@ class CartHistory extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    (() {
-                                      DateTime parseDate = DateFormat(
-                                              "yyyy-MM-dd hh:mm:ss")
-                                          .parse(getCartHistoryList[listCounter]
-                                              .time!);
-                                      var inputDate =
-                                          DateTime.parse(parseDate.toString());
-                                      var outputFormat =
-                                          DateFormat("MM/dd/yyyy hh:mm a");
-                                      var outputDate =
-                                          outputFormat.format(inputDate);
-                                      return BigText(
-                                        text: outputDate,
-                                      );
-                                    }()),
-                                    // BigText(
-                                    //     text: getCartHistoryList[listCounter].time!),
+                                    timeWidget(listCounter),
                                     SizedBox(
                                       height: Dimensions.height10,
                                     ),
@@ -145,7 +141,6 @@ class CartHistory extends StatelessWidget {
                                                                           1]
                                                                   .img!),
                                                         )),
-                                                    // child: Text("hi hi there!! $index"),
                                                   )
                                                 : Container();
                                           }),

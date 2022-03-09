@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controller/cart_controller.dart';
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
@@ -28,7 +30,13 @@ class PopularProductController extends GetxController {
     if (response.statusCode == 200) {
       print('got data');
       _popularProductList = [];
-      _popularProductList.addAll(Product.fromJson(response.body).products);
+      var _body = response.body;
+      if (_body is String) {
+        _body = jsonDecode(response.body);
+      }
+      _popularProductList.addAll(Product.fromJson(_body).products);
+      // _popularProductList.addAll(Product.fromJson(response.body).products);
+
       _isLoaded = true;
       update();
     } else {
