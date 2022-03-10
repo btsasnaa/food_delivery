@@ -28,19 +28,13 @@ class PopularProductController extends GetxController {
     Response response = await popularProductRepo.getPopularProductList();
     print(response);
     if (response.statusCode == 200) {
-      print('got data');
+      print('got popular data');
       _popularProductList = [];
-      var _body = response.body;
-      if (_body is String) {
-        _body = jsonDecode(response.body);
-      }
-      _popularProductList.addAll(Product.fromJson(_body).products);
-      // _popularProductList.addAll(Product.fromJson(response.body).products);
-
+      _popularProductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
       update();
     } else {
-      print('failed to get data');
+      print('failed to get popular data');
       print('failed ${response.statusText}');
     }
   }

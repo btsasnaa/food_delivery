@@ -19,18 +19,13 @@ class RecommendedProductController extends GetxController {
         await recommendedProductRepo.getRecommendedProductList();
     print(response);
     if (response.statusCode == 200) {
-      print('got data');
+      print('got recommended data');
       _recommendedProductList = [];
-      var _body = response.body;
-      if (_body is String) {
-        _body = jsonDecode(response.body);
-      }
-      _recommendedProductList.addAll(Product.fromJson(_body).products);
-      // _recommendedProductList.addAll(Product.fromJson(response.body).products);
+      _recommendedProductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
       update();
     } else {
-      print('failed to get data');
+      print('failed to get recommended data');
       print('failed ${response.statusText}');
     }
   }
