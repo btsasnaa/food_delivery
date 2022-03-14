@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           // home: SignUpPage(),
-          home: SignInPage(),
-          // initialRoute: RouteHelper.getSplashPage(),
-          // getPages: RouteHelper.routes,
+          // home: SignInPage(),
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
         );
       });
     });

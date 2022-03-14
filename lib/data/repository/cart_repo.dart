@@ -45,7 +45,6 @@ class CartRepo extends GetxService {
 
   List<CartModel> getCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory = [];
       cartHistory =
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
@@ -79,5 +78,11 @@ class CartRepo extends GetxService {
   void removeCart() {
     cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
+  }
+
+  void clearCartHistory() {
+    removeCart();
+    cartHistory = [];
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
   }
 }
