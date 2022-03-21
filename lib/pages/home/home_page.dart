@@ -5,6 +5,7 @@ import 'package:food_delivery/pages/auth/sign_in_page.dart';
 import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/pages/upload/upload_image.dart';
 import 'package:food_delivery/utils/colors.dart';
 // import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -22,7 +23,8 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainFoodPage(),
     // SignUpPage(),
-    SignInPage(),
+    ImageUploads(),
+    // SignInPage(),
     CartHistory(),
     AccountPage(),
   ];

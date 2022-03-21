@@ -17,6 +17,10 @@ class AppConstants {
   // login end point
   static const String LOGIN_URI = "/api/v1/auth/login";
 
+// login end point
+  static const String UPLOAD_URI = "/api/v1/image/upload";
+  static const String IMAGE_URI = BASE_URL + "/static/upload_image/";
+
 // user info end point
   static const String USER_INFO_URI = "/api/v1/customer/info";
 
