@@ -4,7 +4,9 @@ class AppConstants {
 
   static const String BASE_URL_ORIG = "http://mvs.bslmeiyu.com";
   // static const String BASE_URL = "http://mvs.bslmeiyu.com";
-  static const String BASE_URL = "http://127.0.0.1:5000";
+  // static const String BASE_URL = "http://127.0.0.1:5000";
+  static const String BASE_URL = "http://10.0.2.2:5000";
+
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMEND_PRODUCT_URI = "/api/v1/products/recommended";
   static const String DRINK_PRODUCT_URI = "/api/v1/products/drink";
