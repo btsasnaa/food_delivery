@@ -4,8 +4,8 @@ class AppConstants {
 
   static const String BASE_URL_ORIG = "http://mvs.bslmeiyu.com";
   // static const String BASE_URL = "http://mvs.bslmeiyu.com";
-  // static const String BASE_URL = "http://127.0.0.1:5000";
-  static const String BASE_URL = "http://10.0.2.2:5000";
+  static const String BASE_URL = "http://127.0.0.1:5000";
+  // static const String BASE_URL = "http://10.0.2.2:5000";
 
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMEND_PRODUCT_URI = "/api/v1/products/recommended";
@@ -25,6 +25,11 @@ class AppConstants {
 
 // user info end point
   static const String USER_INFO_URI = "/api/v1/customer/info";
+
+  // google map api end point
+  static const String GEOCODE_URI = "/api/v1/config/geocode-api";
+  // static const String GEOCODE_URI =
+  //     "https://maps.googleapis.com/maps/api/geocode/json";
 
   static const String TOKEN = "DBtoken";
   static const String PASSWORD = "password";

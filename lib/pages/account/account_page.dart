@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/controller/auth_controller.dart';
 import 'package:food_delivery/controller/cart_controller.dart';
+import 'package:food_delivery/controller/location_controller.dart';
 import 'package:food_delivery/controller/user_controller.dart';
 import 'package:food_delivery/route/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
@@ -30,10 +31,10 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     // bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
-    // if (_userLoggedIn) {
-    //   Get.find<UserController>().getUserInfo();
-    //   print("user has logged in");
-    // }
+    if (_userLoggedIn) {
+      Get.find<UserController>().getUserInfo();
+      print("user has logged in");
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
@@ -104,16 +105,30 @@ class _AccountPageState extends State<AccountPage> {
                                               userController.userModel.email)),
                                   SizedBox(height: Dimensions.height20),
                                   // address
-                                  AccountWidget(
-                                      appIcon: AppIcon(
-                                        icon: Icons.location_on,
-                                        backgroundColor: AppColors.yellowColor,
-                                        iconColor: Colors.white,
-                                        iconSize: Dimensions.height10 * 5 / 2,
-                                        size: Dimensions.height10 * 5,
-                                      ),
-                                      bigText: BigText(
-                                          text: "Fill in your address")),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (Get.find<AuthController>()
+                                          .userLoggedIn()) {
+                                        if (Get.find<LocationController>()
+                                            .addressList
+                                            .isEmpty) {
+                                          Get.toNamed(
+                                              RouteHelper.getAddressRoute());
+                                        }
+                                      }
+                                    },
+                                    child: AccountWidget(
+                                        appIcon: AppIcon(
+                                          icon: Icons.location_on,
+                                          backgroundColor:
+                                              AppColors.yellowColor,
+                                          iconColor: Colors.white,
+                                          iconSize: Dimensions.height10 * 5 / 2,
+                                          size: Dimensions.height10 * 5,
+                                        ),
+                                        bigText: BigText(
+                                            text: "Fill in your address")),
+                                  ),
                                   SizedBox(height: Dimensions.height20),
                                   // message
                                   AccountWidget(
