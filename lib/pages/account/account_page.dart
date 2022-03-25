@@ -105,30 +105,50 @@ class _AccountPageState extends State<AccountPage> {
                                               userController.userModel.email)),
                                   SizedBox(height: Dimensions.height20),
                                   // address
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (Get.find<AuthController>()
-                                          .userLoggedIn()) {
-                                        if (Get.find<LocationController>()
-                                            .addressList
-                                            .isEmpty) {
-                                          Get.toNamed(
-                                              RouteHelper.getAddressRoute());
-                                        }
-                                      }
-                                    },
-                                    child: AccountWidget(
-                                        appIcon: AppIcon(
-                                          icon: Icons.location_on,
-                                          backgroundColor:
-                                              AppColors.yellowColor,
-                                          iconColor: Colors.white,
-                                          iconSize: Dimensions.height10 * 5 / 2,
-                                          size: Dimensions.height10 * 5,
-                                        ),
-                                        bigText: BigText(
-                                            text: "Fill in your address")),
-                                  ),
+                                  GetBuilder<LocationController>(
+                                      builder: (locationController) {
+                                    if (_userLoggedIn &&
+                                        locationController
+                                            .addressList.isEmpty) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddressPage());
+                                        },
+                                        child: AccountWidget(
+                                            appIcon: AppIcon(
+                                              icon: Icons.location_on,
+                                              backgroundColor:
+                                                  AppColors.yellowColor,
+                                              iconColor: Colors.white,
+                                              iconSize:
+                                                  Dimensions.height10 * 5 / 2,
+                                              size: Dimensions.height10 * 5,
+                                            ),
+                                            bigText: BigText(
+                                                text: "Fill in your address")),
+                                      );
+                                    } else {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddressPage());
+                                        },
+                                        child: AccountWidget(
+                                            appIcon: AppIcon(
+                                              icon: Icons.location_on,
+                                              backgroundColor:
+                                                  AppColors.yellowColor,
+                                              iconColor: Colors.white,
+                                              iconSize:
+                                                  Dimensions.height10 * 5 / 2,
+                                              size: Dimensions.height10 * 5,
+                                            ),
+                                            bigText:
+                                                BigText(text: "Your address")),
+                                      );
+                                    }
+                                  }),
                                   SizedBox(height: Dimensions.height20),
                                   // message
                                   AccountWidget(

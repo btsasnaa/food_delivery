@@ -19,11 +19,11 @@ class AppConstants {
   // login end point
   static const String LOGIN_URI = "/api/v1/auth/login";
 
-// login end point
+  // login end point
   static const String UPLOAD_URI = "/api/v1/image/upload";
   static const String IMAGE_URI = BASE_URL + "/static/upload_image/";
 
-// user info end point
+  // user info end point
   static const String USER_INFO_URI = "/api/v1/customer/info";
 
   // google map api end point
@@ -31,6 +31,13 @@ class AppConstants {
   // static const String GEOCODE_URI =
   //     "https://maps.googleapis.com/maps/api/geocode/json";
 
+  // add user address end point
+  static const String ADD_ADDRESS_URI = "/api/v1/customer/address/add";
+
+  // get user address end point
+  static const String ADDRESS_LIST_URI = "/api/v1/customer/address/list";
+
+  static const String USER_ADDRESS = "user-address";
   static const String TOKEN = "DBtoken";
   static const String PASSWORD = "password";
   static const String PHONE = "phone";

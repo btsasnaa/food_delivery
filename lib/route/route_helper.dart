@@ -27,7 +27,7 @@ class RouteHelper {
   static String getCartPage(String page) => '$cartPage?page=$page';
   static String getSignInPage() => '$signIn';
   static String getSignUpPage() => '$signUp';
-  static String getAddressRoute() => '$addressPage';
+  static String getAddressPage() => '$addressPage';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
